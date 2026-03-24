@@ -1,0 +1,42 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "TravelPlan": {
+      "title": "TravelPlan",
+      "description": "A generated travel plan",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "destination": { "type": "string" },
+        "duration": { "type": "string" },
+        "budget": { "type": "string", "enum": ["low", "mid", "high"] },
+        "style": { "type": "string" },
+        "plan": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "destination", "plan"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile documents"
+    },
+    "/travelPlans/{planId}": {
+      "schema": "TravelPlan",
+      "description": "Generated travel plans"
+    }
+  }
+}
